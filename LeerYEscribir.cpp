@@ -9,10 +9,8 @@
 
 using namespace std;
 
-/* Falta poner cuando tienes mas de un nombre, lo que se me ocurre es poner un while para tomar hasta Age:
-@ ya que tiene formato preestablecio
-@ 
-@ 
+/* 
+@ Ya Esta listo creo
 */
 
 
@@ -31,7 +29,8 @@ void add_person(vector<Persona> &P){
     Persona new_person;
 
     cout << "Nombre de la persona: " << endl;
-    cin >> new_person.name;
+    cin.ignore();
+    getline(cin, new_person.name);
     cout << "Edad de la persona" << endl;
     cin >> new_person.age;
 
@@ -43,8 +42,24 @@ void add_person(vector<Persona> &P){
 void add_person_from_file(vector<Persona>&P, const vector<string> &A){
     
     Persona new_person;
-    new_person.name = A[1];
-    new_person.age = stoi(A[3]);
+    string name;
+    int i = 1;
+    while (true){
+        if (A[i] == "Age:")
+            break;
+        else{
+            if (A[i + 1 ] == "Age:")
+                name.append(A[i]);
+            else{
+                name.append(A[i]);
+                name.append(" ");
+            }
+            ++i;
+        }
+    }
+    
+    new_person.name = name;
+    new_person.age = stoi(A[i + 1]);
     P.push_back(new_person);
 
 }
@@ -112,7 +127,7 @@ int main(){
     read_person(Ruta, P); //Leer del archivo
     
     int option = 0x00;
-    while (option != 4){
+    while (option != 0x4){
         option = menu();
         switch (option){
             case 1:
@@ -139,7 +154,7 @@ int main(){
                 break;
 
             default:
-                cout << "opcion incorrecta";
+                cout << "opcion incorrecta" << endl;
                 break;
         }
     }
