@@ -79,19 +79,6 @@ void write_person_with_format(const string &Ruta, const vector<Persona> & P){
 }
 
 
-template<char delimiter>
-class delimited_by_char: public string{};
-
-
-vector <string> splitted_by_char(string &c){
-    istringstream iss(c);
-    const char delimiter = ' '; //puedes cambiar el valor para que separe por otras cosas
-    vector<string> splitted ((istream_iterator<delimited_by_char<delimiter>>(iss)), istream_iterator<delimited_by_char<delimiter>>());
-
-    return splitted;
-
-}
-
 void read_person(const string &Ruta, vector<Persona> &P){
 
     vector<string> temp;
@@ -126,8 +113,8 @@ int main(){
     Ruta = nombre_archivo();
     read_person(Ruta, P); //Leer del archivo
     
-    int option = 0x00;
-    while (option != 0x4){
+    int option = 0;
+    while (option != 4){
         option = menu();
         switch (option){
             case 1:
