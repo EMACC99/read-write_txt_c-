@@ -2,7 +2,7 @@
 #include<vector>
 
 struct Persona{
-    int age;
+    std::string fecha_nacimineto;
     std::string matricula;
     std::string name;
     std::string telefono;
